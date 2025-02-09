@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
-    buildToolsVersion BUILD_TOOLS_VERSION
     defaultConfig {
         minSdkVersion COMPILE_MIN_SDK_VERSION as int
         targetSdkVersion COMPILE_SDK_VERSION as int
@@ -18,12 +17,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    namespace 'com.daasuu.exoplayerfilter'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 
 
-    compile project(':epf')
+    implementation project(':epf')
+
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.0'
 }
